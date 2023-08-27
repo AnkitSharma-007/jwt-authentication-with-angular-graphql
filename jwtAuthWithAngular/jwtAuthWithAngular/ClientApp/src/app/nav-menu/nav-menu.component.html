@@ -1,0 +1,69 @@
+<header>
+  <nav
+    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+  >
+    <div class="container">
+      <a class="navbar-brand" [routerLink]="['/']">jwtAuthWithAngular</a>
+
+      <ng-container *ngIf="userData$ | async as userData">
+        <div
+          class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
+        >
+          <ul class="navbar-nav flex-grow">
+            <li
+              class="nav-item"
+              [routerLinkActive]="['link-active']"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+            </li>
+
+            <ng-container *ngIf="userData.isLoggedIn; else logoutButton">
+              <li class="nav-item" [routerLinkActive]="['link-active']">
+                <a
+                  class="nav-link text-dark"
+                  *ngIf="
+                    userData.isLoggedIn &&
+                    userData.userTypeName == UserRole.User
+                  "
+                  [routerLink]="['/user-home']"
+                  >UserHome</a
+                >
+              </li>
+              <li class="nav-item" [routerLinkActive]="['link-active']">
+                <a
+                  class="nav-link text-dark"
+                  *ngIf="
+                    userData.isLoggedIn &&
+                    userData.userTypeName == UserRole.Admin
+                  "
+                  [routerLink]="['/admin-home']"
+                  >AdminHome</a
+                >
+              </li>
+              <li class="nav-item" [routerLinkActive]="['link-active']">
+                <a class="nav-link text-dark"
+                  >Welcome {{ userData.firstName }}
+                </a>
+              </li>
+
+              <li class="nav-item" [routerLinkActive]="['link-active']">
+                <a class="nav-link text-dark" (click)="logout()">Logout</a>
+              </li>
+            </ng-container>
+            <ng-template #logoutButton>
+              <li class="nav-item" [routerLinkActive]="['link-active']">
+                <a
+                  class="nav-link text-dark"
+                  *ngIf="!userData.isLoggedIn"
+                  [routerLink]="['/login']"
+                  >Login</a
+                >
+              </li>
+            </ng-template>
+          </ul>
+        </div>
+      </ng-container>
+    </div>
+  </nav>
+</header>
