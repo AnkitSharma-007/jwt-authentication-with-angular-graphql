@@ -1,2 +1,6 @@
 <h2>User home page</h2>
 <h4 *ngIf="user$ | async as user">{{ user.userData }}</h4>
+
+<h6 *ngIf="userError$ | async as userError">
+  {{ userError.networkError.error.errors[0].message }}
+</h6>

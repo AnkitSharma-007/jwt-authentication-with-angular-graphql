@@ -36,8 +36,6 @@ export class AuthenticationService {
         window.atob(authToken.split('.')[1])
       );
 
-      console.log('decodeUserDetails', decodeUserDetails);
-
       userDetails.userName = decodeUserDetails.name;
       userDetails.firstName = decodeUserDetails.firstName;
       userDetails.userTypeName = decodeUserDetails.sub;

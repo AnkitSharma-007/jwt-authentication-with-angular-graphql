@@ -39,7 +39,7 @@ export class LoginComponent implements OnDestroy {
     return this.loginForm.controls;
   }
 
-  login() {
+  protected login() {
     if (this.loginForm.valid) {
       this.authenticationService
         .login(this.loginForm.value as UserLogin)

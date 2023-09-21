@@ -22,10 +22,7 @@
               <li class="nav-item" [routerLinkActive]="['link-active']">
                 <a
                   class="nav-link text-dark"
-                  *ngIf="
-                    userData.isLoggedIn &&
-                    userData.userTypeName == UserRole.User
-                  "
+                  *ngIf="userData.userTypeName === UserRole.User"
                   [routerLink]="['/user-home']"
                   >UserHome</a
                 >
@@ -33,10 +30,7 @@
               <li class="nav-item" [routerLinkActive]="['link-active']">
                 <a
                   class="nav-link text-dark"
-                  *ngIf="
-                    userData.isLoggedIn &&
-                    userData.userTypeName == UserRole.Admin
-                  "
+                  *ngIf="userData.userTypeName === UserRole.Admin"
                   [routerLink]="['/admin-home']"
                   >AdminHome</a
                 >
@@ -53,10 +47,7 @@
             </ng-container>
             <ng-template #logoutButton>
               <li class="nav-item" [routerLinkActive]="['link-active']">
-                <a
-                  class="nav-link text-dark"
-                  *ngIf="!userData.isLoggedIn"
-                  [routerLink]="['/login']"
+                <a class="nav-link text-dark" [routerLink]="['/login']"
                   >Login</a
                 >
               </li>

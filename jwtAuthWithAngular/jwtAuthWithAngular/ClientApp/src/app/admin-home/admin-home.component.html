@@ -1,2 +1,6 @@
 <h2>Admin home page</h2>
 <h4 *ngIf="admin$ | async as admin">{{ admin.adminData }}</h4>
+
+<h6 *ngIf="adminError$ | async as adminError">
+  {{ adminError.networkError.error.errors[0].message }}
+</h6>
